@@ -5,6 +5,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .navbar {
@@ -61,4 +62,31 @@ a:hover {
 
 .alert {
     margin-top: 10px;
+}
+
+.top-bar {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.top-bar h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.top-bar p {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-primary, .btn-secondary {
+    width: 150px;
+    font-size: 1rem;
 }
