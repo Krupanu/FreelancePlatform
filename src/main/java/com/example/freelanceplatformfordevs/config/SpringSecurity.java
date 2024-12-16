@@ -23,25 +23,19 @@ public class SpringSecurity {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/", "../static/**",  "/index", "../img/**", "/register", "/login").permitAll()
+                        .requestMatchers("/", "../static/**",  "/index", "../img/**", "/register", "/register/**", "/login").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/index", true)
-                        .failureHandler((request, response, authenticationException) -> {
-                            authenticationException.getMessage();
-                        })
-                        .successHandler((request, response, authentication) ->
-                            response.sendRedirect("/index")
-                        )
+                        .defaultSuccessUrl("/orders", true)
                         .permitAll()
                 )
                 .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .logoutSuccessUrl("/login?logout")
+                                .logoutSuccessUrl("/index")
                                 .permitAll()
                 );
 
