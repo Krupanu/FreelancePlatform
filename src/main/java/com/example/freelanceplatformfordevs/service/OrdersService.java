@@ -8,4 +8,5 @@ public interface OrdersService {
     Order getOrderInfo(Long orderId);
     List<Order> orders();
     void updateOrder(Order order);
+    Order addOrder(Order order, Long currentUserId);
 }

@@ -71,4 +71,9 @@ public class AuthController {
         model.addAttribute("users", users);
         return "users";
     }
+
+    @GetMapping("/about")
+    public String getAbout() {
+        return "about";
+    }
 }

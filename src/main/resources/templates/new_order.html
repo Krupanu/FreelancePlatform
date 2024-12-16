@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org" th:replace="~{template :: template(~{::title}, ~{::content})}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Freelancer's Dream - Создание нового заказа</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../static/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+<div th:fragment="content" class="container">
+
+  <main class="main-content my-5">
+    <div class="card">
+      <h1 class="card-title text-center">Создание нового заказа</h1>
+      <div class="card-body">
+        <form th:onsubmit="'createOrder(event, ' + ${currentUser.getId()} + ')'">
+          <div class="mb-3">
+            <label for="title" class="form-label">Название заказа</label>
+            <input type="text" id="title" name="title" class="form-control" placeholder="Введите название заказа" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Описание заказа</label>
+            <textarea id="description" name="description" class="form-control" placeholder="Введите описание заказа" rows="4" required></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="budget" class="form-label">Бюджет</label>
+            <input type="number" id="budget" name="budget" class="form-control" placeholder="Введите бюджет" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="deadline" class="form-label">Срок выполнения</label>
+            <input type="date" id="deadline" name="deadline" class="form-control" required>
+          </div>
+
+          <div class="mb-3 text-center">
+            <button type="submit" class="btn btn-primary">Создать заказ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

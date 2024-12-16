@@ -85,4 +85,12 @@ public class OrderController {
         return "all_orders";
     }
 
+    @GetMapping("/create-order")
+    public String CreateOrder(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User currentUser = userService.findByEmail(authentication.getName());
+        model.addAttribute("currentUser", currentUser);
+        
+        return "new_order";
+    }
 }
