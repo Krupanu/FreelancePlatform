@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer's Dream - Список заказов</title>
+    <link href="/static/css/styles.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar">
+        <a href="/" class="logo">Freelancer's Dream</a>
+    </nav>
+
+    <main class="main-content">
+        <div class="card">
+            <h1 class="card-title">Список заказов</h1>
+
+            <div class="orders-list">
+                <div th:each="order:${orders}" class="order-item">
+                    <a th:href="@{/order/{orderId}(orderId=${order.getId()})}" class="order-link">
+                        <h2 th:text="${order.title}" class="order-title"></h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>

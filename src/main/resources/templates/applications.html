@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<script lang="javascript">
+    async function callApi(orderId, applicationId) {
+        const param1 = orderId;
+        const param2 = applicationId;
+
+        try {
+            const response = await fetch(`/order/${encodeURIComponent(param1)}/applications/${encodeURIComponent(param2)}`, {
+            method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            const result = await response.text();
+            location.reload();
+        } else {
+            alert("Error: " + response.statusText);
+        }
+    } catch (error) {
+        console.error("Error calling API:", error);
+        alert("Failed to call API");
+    }
+    }
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:text="${order.title}"></div>
+<div th:each="applicationDetails:${order.applications}">
+    <div th:text="${applicationDetails.getUser().getFirstName()}"></div>
+    <div th:text="${applicationDetails.getStatus()}"></div>
+    <div th:if="${order.getStatus()} != ${approvedOrderStatus}">
+        <button th:if="${applicationDetails.getStatus()} != ${declinedApplicationStatus}" type="button" th:onclick="'callApi(' + ${order.getId()} + ',' + ${applicationDetails.getId()} + ')'">Select freelancer</button>
+        <div th:if="${applicationDetails.getStatus()} == ${declinedApplicationStatus}">
+            This application was declined
+        </div>
+    </div>
+    <div th:if="${order.getStatus()} == ${approvedOrderStatus}">
+        <div th:if="${applicationDetails.getStatus()} == ${approvedApplicationStatus}">
+            This application was selected
+        </div>
+    </div>
+</div>
+</body>
+</html>

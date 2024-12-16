@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:each="user:${users}">
+    <a th:href="@{/profile/{userId}(userId=${user.getId()})}">
+    <div th:text="${user.getFirstName()}"></div>
+    </a>
+</div>
+</body>
+</html>
