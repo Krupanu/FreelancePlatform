@@ -29,10 +29,13 @@ public class Order
     private LocalDate createdAt;
 
     @Column(nullable = false)
-    private Double dueDate;
+    private LocalDate dueDate;
 
     @Column(nullable = false)
     private String description;
+
+    @Column(nullable = false)
+    private Double budget;
 
     @Column(nullable = false)
     private String title;
